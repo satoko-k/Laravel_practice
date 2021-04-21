@@ -17,11 +17,40 @@
             @csrf
 
             <!-- 本のタイトル -->
-            <div class="form-group">
-                <div class="col-sm-6">
+            <!--<div class="form-group">-->
+            <!--    <div class="col-sm-6">-->
+            <!--        <input type="text" name="item_name" class="form-control">-->
+            <!--    </div>-->
+            <!--</div>-->
+            
+           <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="book" class="col-sm-3 control-label">本の名前</label>
                     <input type="text" name="item_name" class="form-control">
                 </div>
+
+                <div class="form-group col-md-6">
+                    <label for="amount" class="col-sm-3 control-label">金額</label>
+                    <input type="text" name="item_amount" class="form-control">
+                </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="number" class="col-sm-3 control-label">数</label>
+                    <input type="text" name="item_number" class="form-control">
+                </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="published" class="col-sm-3 control-label">公開日</label>
+                    <input type="date" name="published" class="form-control">
+                </div>
+            </div> 
+            
+            
+            
+            
+            
+            
 
             <!-- 本 登録ボタン -->
             <div class="form-group">
@@ -33,10 +62,9 @@
             </div>
         </form>
         
-    
-        
-        
     </div>
+    
+    
     <!-- Book: 既に登録されてる本のリスト -->
     
     
@@ -59,6 +87,19 @@
                                 <td class="table-text">
                                     <div>{{ $book->item_name }}</div>
                                 </td>
+                                
+                                
+                                <!-- 本: 更新ボタン -->
+                                <td>
+                                    <form action="{{ url('booksedit/'.$book->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">
+                                            更新
+                                        </button>
+                                    </form>
+                                </td>
+                                
+                                
 
                                 <!-- 本: 削除ボタン -->
                                 <td>
@@ -77,6 +118,18 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        
+        
+        
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                {{ $books -> links()}}
+                
+            </div>
+            
+            
+            
         </div>
     @endif
     
